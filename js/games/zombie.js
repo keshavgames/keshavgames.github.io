@@ -31,7 +31,7 @@
   }
 
   GameBox.register({
-    id: 'zombie', title: 'Dead Acre', genre: 'Action', kind: 'Zombie shooter', w: W, h: H, cursor: 'crosshair',
+    id: 'zombie', title: 'Dead Acre', genre: 'Shooter', kind: 'Zombie shooter', w: W, h: H, cursor: 'crosshair',
     desc: 'Hold the farm through the night. Walkers shamble, runners sprint, spitters lob acid and brutes soak up bullets. Swap between pistol, shotgun and SMG, grab ammo and medkits, and save grenades for crowds.',
     controls: [['W A S D', 'Move'], ['Mouse', 'Aim'], ['Click / Hold', 'Shoot'], ['Arrows', 'Aim and shoot without a mouse'], ['R', 'Reload'], ['1 2 3', 'Switch gun'], ['Q', 'Throw grenade']],
     info() { return `Wave ${this.wave} · ${this.left + this.zs.length} zombies left`; },

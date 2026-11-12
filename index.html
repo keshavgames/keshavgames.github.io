@@ -89,6 +89,24 @@
   @keyframes fade{from{opacity:0}}
   .veil h2{font:400 clamp(22px,4vw,34px)/1.1 var(--display);margin:0;letter-spacing:.02em}
   .veil p{margin:0;max-width:36ch;color:var(--screen-muted)}
+  .veil{overflow-y:auto;align-content:center}
+  .vmodes{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  .mode{font:600 14px var(--body);color:var(--screen-fg);background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.2);border-radius:999px;padding:8px 16px;cursor:pointer}
+  .mode.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+  .vlevels{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:6px;width:min(100%,470px);max-height:42%;overflow-y:auto;padding:4px}
+  .lvl{position:relative;font:700 13px var(--body);color:var(--screen-fg);background:rgba(255,255,255,.12);border:0;border-radius:8px;height:40px;cursor:pointer}
+  .lvl:hover:not(:disabled){background:rgba(255,255,255,.22)}
+  .lvl i{position:absolute;left:0;right:0;bottom:2px;font-size:8px;font-style:normal;color:#ffcf5c;letter-spacing:-1px}
+  .lvl.on{outline:2px solid var(--accent)}
+  .lvl:disabled{opacity:.35;cursor:default}
+  .stars{font-size:38px;color:#ffcf5c;letter-spacing:6px}
+  .stars s{color:rgba(255,255,255,.2);text-decoration:none}
+  .vnet{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;max-width:430px}
+  .vnet input{font:700 16px var(--body);letter-spacing:.2em;text-transform:uppercase;width:116px;text-align:center;padding:8px;border-radius:10px;border:2px solid rgba(255,255,255,.25);background:rgba(0,0,0,.35);color:#fff}
+  .vnet p{flex-basis:100%;margin:0;font-size:13px}
+  .ghost.light{color:var(--screen-fg);border-color:rgba(255,255,255,.35)}
+  .thumb{position:relative}
+  .badge{position:absolute;top:8px;left:8px;font:700 11px/1 var(--body);background:var(--accent);color:var(--accent-ink);padding:5px 9px;border-radius:999px}
   .veil .vkind{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
   .btn{font:600 16px var(--body);color:var(--accent-ink);background:var(--accent);border:0;border-radius:999px;padding:12px 30px;cursor:pointer;transition:transform .15s}
   .btn:hover{transform:scale(1.05)}
@@ -161,7 +179,16 @@
       <p class="vkind" id="vkind"></p>
       <h2 id="vtitle"></h2>
       <p id="vtext"></p>
+      <div class="vmodes" id="vmodes" hidden></div>
+      <div class="vnet" id="vnet" hidden>
+        <button class="ghost light" id="nhost" type="button">Host a room</button>
+        <span class="or">or</span>
+        <label class="sr" for="ncode">Room code</label><input id="ncode" maxlength="6" placeholder="CODE" autocomplete="off">
+        <button class="ghost light" id="njoin" type="button">Join</button>
+        <p id="nstatus">Play with a friend on another computer. One of you hosts, the other joins with the code.</p>
+      </div>
       <button class="btn" id="vbtn" type="button">Play</button>
+      <div class="vlevels" id="vlevels" hidden></div>
     </div>
   </div>
   <div class="pbar">
@@ -185,40 +212,44 @@
 
 <footer class="wrap foot">Every game in the grid is original and made for Game Box. PolyTrack is made by Kodub and opens on its official site.</footer>
 
+<script src="js/net.js"></script>
 <script src="js/core.js"></script>
+<script src="js/lib/ray.js"></script>
+<script src="js/games/strike.js"></script>
+<script src="js/games/royale.js"></script>
 <script src="js/games/horror.js"></script>
 <script src="js/games/rpg.js"></script>
 <script src="js/games/racer.js"></script>
-<script src="js/games/drift.js"></script>
 <script src="js/games/platformer.js"></script>
-<script src="js/games/zombie.js"></script>
-<script src="js/games/survivor.js"></script>
-<script src="js/games/fighter.js"></script>
 <script src="js/games/stealth.js"></script>
 <script src="js/games/dressup.js"></script>
-<script src="js/games/td.js"></script>
-<script src="js/games/cards.js"></script>
-<script src="js/games/match3.js"></script>
-<script src="js/games/rhythm.js"></script>
-<script src="js/games/soccer.js"></script>
-<script src="js/games/pinball.js"></script>
-<script src="js/games/conquest.js"></script>
-<script src="js/games/artillery.js"></script>
-<script src="js/games/farm.js"></script>
-<script src="js/games/cafe.js"></script>
-<script src="js/games/survival.js"></script>
-<script src="js/games/orbit.js"></script>
-<script src="js/games/fishing.js"></script>
-<script src="js/games/idle.js"></script>
-<script src="js/games/typing.js"></script>
-<script src="js/games/blob.js"></script>
-<script src="js/games/shooter.js"></script>
-<script src="js/games/runner.js"></script>
-<script src="js/games/flyer.js"></script>
-<script src="js/games/snake.js"></script>
-<script src="js/games/bricks.js"></script>
-<script src="js/games/dodge.js"></script>
-<script src="js/games/memory.js"></script>
 <script src="js/games/aim.js"></script>
+<script src="js/games/artillery.js"></script>
+<script src="js/games/blob.js"></script>
+<script src="js/games/bricks.js"></script>
+<script src="js/games/cafe.js"></script>
+<script src="js/games/cards.js"></script>
+<script src="js/games/conquest.js"></script>
+<script src="js/games/dodge.js"></script>
+<script src="js/games/drift.js"></script>
+<script src="js/games/farm.js"></script>
+<script src="js/games/fighter.js"></script>
+<script src="js/games/fishing.js"></script>
+<script src="js/games/flyer.js"></script>
+<script src="js/games/idle.js"></script>
+<script src="js/games/match3.js"></script>
+<script src="js/games/memory.js"></script>
+<script src="js/games/orbit.js"></script>
+<script src="js/games/pinball.js"></script>
+<script src="js/games/rhythm.js"></script>
+<script src="js/games/runner.js"></script>
+<script src="js/games/shooter.js"></script>
+<script src="js/games/snake.js"></script>
+<script src="js/games/soccer.js"></script>
+<script src="js/games/survival.js"></script>
+<script src="js/games/survivor.js"></script>
+<script src="js/games/td.js"></script>
+<script src="js/games/typing.js"></script>
+<script src="js/games/zombie.js"></script>
 </body>
 </html>

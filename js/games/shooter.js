@@ -1,5 +1,5 @@
 GameBox.register({
-  id: 'shooter', title: 'Star Defender', genre: 'Action', kind: 'Vertical shooter', w: 480, h: 600,
+  id: 'shooter', title: 'Star Defender', genre: 'Shooter', kind: 'Vertical shooter', w: 480, h: 600,
   desc: 'Your ship fires on its own. Steer to blast drones, divers and armored tanks, and let none slip past. A mothership arrives every fifty seconds. Grab D for double shot, S for a shield and + for repairs.',
   controls: [['A D / Left Right', 'Steer'], ['Drag / Touch', 'Steer']],
   info() { return this.boss ? 'Mothership incoming' : `Wave ${this.wave}`; },
