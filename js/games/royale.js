@@ -24,7 +24,7 @@
   };
 
   GameBox.register({
-    id: 'royale', title: 'Storm Royale', genre: 'Shooter', kind: 'Battle royale', w: W, h: H, cursor: 'crosshair', modes: ['bot', 'local', 'online'],
+    id: 'royale', thumb: 'jpg', title: 'Storm Royale', genre: 'Shooter', kind: 'Battle royale', w: W, h: H, cursor: 'crosshair', modes: ['bot', 'local', 'online'],
     assets: [...COLORS.flatMap(c => [0, 1].map(f => `img/top_${c}_${f}.png`)), ...['pistol', 'smg', 'rifle', 'sniper'].map(k => `img/gun_${k}.png`)],
     hint: 'Grab loot, chop trees for wood, build walls, stay out of the storm. Be the last one standing!',
     desc: 'Twenty-four players land on an island. Grab guns from the ground and from glowing chests (rarer colours hit harder), chop trees with your pickaxe for wood and build walls to block shots, and stay inside the safe circle as the storm closes in. Play solo against bots, team up with a friend on one keyboard, or play friends online.',

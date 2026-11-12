@@ -30,7 +30,7 @@
   };
 
   GameBox.register({
-    id: 'strike', title: 'Strike Point', genre: 'Shooter', kind: '1v1 tactical shooter', w: W, h: H, pointerLock: true, modes: ['bot', 'local', 'online'],
+    id: 'strike', thumb: 'jpg', title: 'Strike Point', genre: 'Shooter', kind: '1v1 tactical shooter', w: W, h: H, pointerLock: true, modes: ['bot', 'local', 'online'],
     assets: [...['orange', 'blue'].flatMap(c => ['front', 'back', 'left', 'right'].flatMap(d => [0, 1].map(f => `img/soldier_${c}_${d}_${f}.png`))), ...BUY.map(w => `img/gun_${w}.png`)],
     hint: 'Attackers plant at A or B. Defenders stop them. First to 4 rounds wins!',
     desc: 'A one-on-one tactical shooter. Each round one side attacks and must plant a device at site A or B; the other side defends or defuses it. Buy guns between rounds with the money you earn. Play a bot, a friend on the same keyboard (split screen), or a friend online with a room code.',
