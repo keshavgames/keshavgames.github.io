@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#14123a"/><stop offset="1" stop-color="#0a0b1f"/></linearGradient>
+    <rect id="b" width="38" height="14" rx="4"/>
+  </defs>
+  <rect width="320" height="200" fill="url(#bg)"/>
+  <g fill="#ff6b8b"><use href="#b" x="14" y="22"/><use href="#b" x="56" y="22"/><use href="#b" x="98" y="22"/><use href="#b" x="140" y="22"/><use href="#b" x="182" y="22"/><use href="#b" x="224" y="22"/><use href="#b" x="266" y="22"/></g>
+  <g fill="#ffcf5c"><use href="#b" x="14" y="40"/><use href="#b" x="56" y="40"/><use href="#b" x="98" y="40"/><use href="#b" x="140" y="40"/><use href="#b" x="224" y="40"/><use href="#b" x="266" y="40"/></g>
+  <g fill="#5ee6c1"><use href="#b" x="14" y="58"/><use href="#b" x="140" y="58"/><use href="#b" x="182" y="58"/><use href="#b" x="224" y="58"/><use href="#b" x="266" y="58"/></g>
+  <g fill="#8b7bff"><use href="#b" x="14" y="76"/><use href="#b" x="56" y="76"/><use href="#b" x="224" y="76"/><use href="#b" x="266" y="76"/></g>
+  <g fill="#5ee6c1"><rect x="112" y="66" width="4" height="4"/><rect x="104" y="80" width="4" height="4"/><rect x="124" y="84" width="3" height="3"/><rect x="96" y="70" width="3" height="3"/></g>
+  <g fill="#ffcf5c"><circle cx="178" cy="160" r="3" opacity=".15"/><circle cx="184" cy="150" r="4" opacity=".25"/><circle cx="190" cy="140" r="5" opacity=".4"/></g>
+  <circle cx="196" cy="129" r="6" fill="#ffcf5c"/>
+  <rect x="132" y="176" width="80" height="9" rx="4.5" fill="#e8e9ff"/>
+</svg>

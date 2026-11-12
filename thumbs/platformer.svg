@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200">
+  <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc6d9"/><stop offset="1" stop-color="#f6d6a8"/></linearGradient></defs>
+  <rect width="320" height="200" fill="url(#sky)"/>
+  <circle cx="262" cy="38" r="20" fill="#fff8d6" opacity=".85"/>
+  <path d="M0 120Q60 80 120 110T240 100T320 104V200H0Z" fill="#9fd1b3"/>
+  <path d="M0 140Q70 116 150 132T320 126V200H0Z" fill="#6fb38c"/>
+  <g fill="#3f8a5f"><path d="M20 150l14-40 14 40zM70 150l12-34 12 34zM250 150l14-40 14 40z"/></g>
+  <rect y="160" width="320" height="40" fill="#6b4a33"/><rect y="160" width="320" height="9" fill="#6ad46a"/><rect y="167" width="320" height="3" fill="#4fb455"/>
+  <rect x="150" y="160" width="60" height="40" fill="url(#sky)"/>
+  <g><rect x="196" y="96" width="30" height="30" rx="5" fill="#8f96a8"/><rect x="226" y="96" width="30" height="30" rx="5" fill="#8f96a8"/><rect x="196" y="96" width="60" height="6" rx="3" fill="#6ad46a"/></g>
+  <path d="M226 74l9 9-9 9-9-9z" fill="#2fb89a"/><path d="M226 74l4.5 4.5h-9z" fill="#fff" opacity=".5"/>
+  <path d="M120 60l8 8-8 8-8-8zM140 52l8 8-8 8-8-8z" fill="#2fb89a"/>
+  <g transform="translate(148 92) rotate(-8)">
+    <rect x="-12" y="-28" width="24" height="28" rx="11" fill="#7ed957"/><rect x="-12" y="-11" width="24" height="11" rx="6" fill="#5fbf3f"/>
+    <ellipse cx="3" cy="-32" rx="9" ry="4" fill="#4fa83a" transform="rotate(-30 3 -32)"/>
+    <circle cx="1" cy="-18" r="3" fill="#fff"/><circle cx="9" cy="-18" r="3" fill="#fff"/><circle cx="2" cy="-18" r="1.5" fill="#1b1a33"/><circle cx="10" cy="-18" r="1.5" fill="#1b1a33"/>
+  </g>
+  <path d="M64 160a13 10 0 0 1 26 0z" fill="#c4364a"/><circle cx="91" cy="155" r="5" fill="#2b1e1e"/>
+  <rect x="280" y="96" width="4" height="64" fill="#5a3d2a"/><path d="M284 96l26 8-26 9z" fill="#ffcf5c"/>
+</svg>

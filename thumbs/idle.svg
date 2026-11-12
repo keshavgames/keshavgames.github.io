@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200">
+  <defs>
+    <radialGradient id="cave" cx=".5" cy=".5" r=".7"><stop offset="0" stop-color="#2a2240"/><stop offset="1" stop-color="#0e0b18"/></radialGradient>
+    <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#5ee6c1" stop-opacity=".35"/><stop offset="1" stop-color="#5ee6c1" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="320" height="200" fill="url(#cave)"/>
+  <circle cx="160" cy="100" r="90" fill="url(#glow)"/>
+  <g transform="translate(160 100)">
+    <path d="M0-62L43-12 0 6z" fill="#7ff0d2"/><path d="M0-62L0 6-43-12z" fill="#4fd1b0"/><path d="M-43-12L0 6 0 62z" fill="#2fb89a"/><path d="M43-12L0 62 0 6z" fill="#5ee6c1"/>
+    <path d="M-4-50L12-26 0-18z" fill="#fff" opacity=".4"/>
+  </g>
+  <g fill="#ffffff"><path d="M220 46l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/><path d="M96 140l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></g>
+  <g fill="#7ff0d2"><path d="M60 60l6 6-6 6-6-6z"/><path d="M250 130l5 5-5 5-5-5z"/><path d="M90 40l4 4-4 4-4-4z"/></g>
+  <g><rect x="230" y="160" width="56" height="24" rx="4" fill="#8a8f9e"/><path d="M228 160h60l-4-10h-52z" fill="#6b7080"/><circle cx="242" cy="186" r="7" fill="#2b2b30"/><circle cx="274" cy="186" r="7" fill="#2b2b30"/><g fill="#5ee6c1"><path d="M246 150l5 5-5 5-5-5z"/><path d="M262 148l6 6-6 6-6-6z"/></g></g>
+  <g><rect x="34" y="150" width="8" height="34" rx="2" fill="#8a5a35" transform="rotate(-30 38 167)"/><path d="M18 150q20-14 40 0" stroke="#9aa0c8" stroke-width="6" fill="none" stroke-linecap="round" transform="rotate(-30 38 167)"/></g>
+  <path d="M60 20l6 6-6 6-6-6z" fill="#ffcf5c"/>
+</svg>

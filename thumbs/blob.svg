@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200">
+  <defs><pattern id="grid" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M25 0V25H0" fill="none" stroke="#1b2033" stroke-width="1"/></pattern></defs>
+  <rect width="320" height="200" fill="#10131f"/>
+  <rect width="320" height="200" fill="url(#grid)"/>
+  <g>
+    <circle cx="150" cy="104" r="46" fill="hsl(215 70% 45%)"/><circle cx="150" cy="104" r="41" fill="hsl(215 75% 60%)"/><circle cx="136" cy="88" r="8" fill="#fff" opacity=".25"/>
+    <circle cx="150" cy="104" r="48" fill="none" stroke="#fff" stroke-width="3"/>
+    <circle cx="250" cy="60" r="26" fill="hsl(350 70% 45%)"/><circle cx="250" cy="60" r="23" fill="hsl(350 75% 60%)"/>
+    <circle cx="70" cy="150" r="18" fill="hsl(45 70% 45%)"/><circle cx="70" cy="150" r="16" fill="hsl(45 75% 60%)"/>
+    <circle cx="260" cy="160" r="12" fill="hsl(160 70% 40%)"/><circle cx="260" cy="160" r="10.5" fill="hsl(160 75% 55%)"/>
+    <circle cx="60" cy="50" r="10" fill="hsl(290 70% 45%)"/><circle cx="60" cy="50" r="8.5" fill="hsl(290 75% 60%)"/>
+  </g>
+  <g><path d="M210 128l4 7 8-2-2 8 7 4-7 4 2 8-8-2-4 7-4-7-8 2 2-8-7-4 7-4-2-8 8 2z" fill="#3fd27a"/><circle cx="210" cy="146" r="8" fill="#2aa85d"/></g>
+  <g fill-opacity=".9"><circle cx="30" cy="100" r="4" fill="#ff8fa0"/><circle cx="100" cy="30" r="4" fill="#8fd7ff"/><circle cx="200" cy="30" r="4" fill="#ffd27f"/><circle cx="300" cy="110" r="4" fill="#9cf2c8"/><circle cx="110" cy="180" r="4" fill="#d79cff"/><circle cx="180" cy="180" r="4" fill="#ff8fa0"/><circle cx="210" cy="90" r="4" fill="#8fd7ff"/><circle cx="40" cy="80" r="4" fill="#ffd27f"/><circle cx="290" cy="20" r="4" fill="#9cf2c8"/><circle cx="120" cy="160" r="4" fill="#ffd27f"/></g>
+  <rect x="236" y="6" width="78" height="44" rx="6" fill="#00000066"/>
+  <g fill="#e8e9ff"><rect x="244" y="14" width="40" height="4" rx="2"/><rect x="244" y="24" width="50" height="4" rx="2" fill="#ffcf5c"/><rect x="244" y="34" width="34" height="4" rx="2"/></g>
+</svg>

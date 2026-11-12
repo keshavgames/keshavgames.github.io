@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Game Box</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Original browser games you can play right away: racing, arcade, action, puzzle and skill.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 30 16 16 30 2 16Z' fill='%23ffcf5c'/%3E%3Cpath d='M16 2 23 9 9 9Z' fill='%23fff3c4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Rubik:wght@400;500;600&display=swap">
+<style>
+  /* layout: sticky brand bar, short intro, genre filter row, auto-fill grid of thumbnail tiles (name under each); player view stacks stage over controls */
+  :root{
+    --bg:#0d0e1b; --surface:#161830; --surface-2:#1f2240; --line:#2b2f55;
+    --fg:#eef0ff; --muted:#9a9fca;
+    --accent:#ffcf5c; --accent-ink:#1b1400; --accent-text:#ffcf5c; --hot:#ff6b8b;
+    --screen:#070814; --screen-fg:#eef0ff; --screen-muted:#c4c8ee; --veil:rgba(7,8,20,.62);
+    --display:"Bungee", Impact, "Arial Black", sans-serif;
+    --body:"Rubik", system-ui, "Segoe UI", sans-serif;
+    --radius:14px;
+    color-scheme:dark;
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="dark"]){--bg:#f4f2fb;--surface:#ffffff;--surface-2:#e9e6f7;--line:#d9d5ee;--fg:#1a1930;--muted:#5d5a82;--accent:#f2b630;--accent-ink:#1b1400;--accent-text:#8a5d00;--hot:#d93a5f;color-scheme:light}
+  }
+  :root[data-theme="light"]{--bg:#f4f2fb;--surface:#ffffff;--surface-2:#e9e6f7;--line:#d9d5ee;--fg:#1a1930;--muted:#5d5a82;--accent:#f2b630;--accent-ink:#1b1400;--accent-text:#8a5d00;--hot:#d93a5f;color-scheme:light}
+
+  *{box-sizing:border-box}
+  [hidden]{display:none!important}
+  body{margin:0;min-height:100vh;background:var(--bg);color:var(--fg);font:400 16px/1.5 var(--body);padding-block:0 40px}
+  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+  .wrap{max-width:1120px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+  .logo{display:flex;align-items:center;gap:10px;font:400 20px/1 var(--display);letter-spacing:.03em;text-decoration:none;white-space:nowrap}
+  .logo-mark{width:16px;height:16px;transform:rotate(45deg);border-radius:3px;background:linear-gradient(135deg,var(--accent),var(--hot))}
+  .search input{width:min(280px,44vw);font:400 15px var(--body);color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 16px}
+  .search input::placeholder{color:var(--muted)}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+  main:not([hidden]){animation:rise .35s cubic-bezier(.2,.8,.2,1)}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}}
+
+  .intro{padding-block:40px 24px}
+  .intro h1{font:400 clamp(28px,5vw,46px)/1.08 var(--display);margin:0 0 12px;max-width:20ch;text-wrap:balance}
+  .intro p{margin:0;color:var(--muted);max-width:60ch}
+  .filters{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font:500 14px var(--body);color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+  .chip:hover{border-color:var(--muted)}
+  .chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+  .count{color:var(--muted);font-size:14px;font-variant-numeric:tabular-nums}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(150px,22vw,230px),1fr));gap:28px 20px}
+  .tile{display:flex;flex-direction:column;min-width:0;text-decoration:none;border-radius:var(--radius)}
+  .thumb{display:block;aspect-ratio:16/10;max-width:100%;border-radius:var(--radius);overflow:hidden;background:var(--surface-2);box-shadow:0 0 0 1px var(--line),0 10px 24px -14px rgba(0,0,0,.5);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
+  .thumb img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+  .tile:hover .thumb,.tile:focus-visible .thumb{transform:translateY(-4px);box-shadow:0 0 0 2px var(--accent),0 18px 30px -16px rgba(0,0,0,.6)}
+  .tile:hover img{transform:scale(1.05)}
+  .tile:focus-visible{outline:none}
+  .name{margin-top:10px;font-weight:600;line-height:1.3}
+  .meta{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .empty{color:var(--muted);margin:0}
+  .elsewhere,.more{padding-top:48px}
+  .elsewhere h2,.more h2{font:600 13px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 16px}
+
+  /* declared here, where core.js sets --ratio, so each game's aspect ratio applies */
+  #player{--stage-w:min(100%, max(280px, calc((100dvh - 250px) * var(--ratio, 1))));--bar-w:max(var(--stage-w), min(100%, 600px))}
+  .phead{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;padding-block:20px 16px;width:var(--bar-w);margin-inline:auto}
+  .back{color:var(--muted);text-decoration:none;font-weight:500;transition:color .2s}
+  .back:hover{color:var(--fg)}
+  #ptitle{font:400 clamp(20px,3vw,28px)/1.1 var(--display);margin:0;flex:1 1 auto}
+  .scores{display:flex;gap:18px;margin:0}
+  .scores div{display:flex;flex-direction:column;align-items:flex-end}
+  .scores dt{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .scores dd{margin:0;font-weight:600;font-size:18px;font-variant-numeric:tabular-nums}
+  #best{color:var(--accent-text)}
+
+  .stage{position:relative;width:var(--stage-w);max-width:100%;aspect-ratio:var(--ratio,1);margin-inline:auto;border-radius:18px;overflow:hidden;background:var(--screen);box-shadow:0 0 0 1px var(--line),0 24px 60px -24px rgba(0,0,0,.6)}
+  .stage canvas{display:block;width:100%;height:100%;touch-action:none}
+  .stage:fullscreen{display:grid;place-items:center;background:#000;border-radius:0}
+  .stage:fullscreen canvas{width:min(100vw,calc(100vh * var(--ratio)));height:auto;aspect-ratio:var(--ratio)}
+  .veil{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:12px;padding:24px;text-align:center;background:var(--veil);backdrop-filter:blur(6px);color:var(--screen-fg);cursor:pointer;animation:fade .25s ease}
+  @keyframes fade{from{opacity:0}}
+  .veil h2{font:400 clamp(22px,4vw,34px)/1.1 var(--display);margin:0;letter-spacing:.02em}
+  .veil p{margin:0;max-width:36ch;color:var(--screen-muted)}
+  .veil .vkind{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+  .btn{font:600 16px var(--body);color:var(--accent-ink);background:var(--accent);border:0;border-radius:999px;padding:12px 30px;cursor:pointer;transition:transform .15s}
+  .btn:hover{transform:scale(1.05)}
+
+  .pbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;padding-block:14px;width:var(--bar-w);margin-inline:auto}
+  .info{font-weight:600;font-variant-numeric:tabular-nums}
+  .keys{color:var(--muted);font-size:13px}
+  .pbtns{display:flex;flex-wrap:wrap;gap:8px}
+
+  .howto{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px;width:var(--bar-w);margin-inline:auto}
+  .howto > div{min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px}
+  .howto h2{font:600 12px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+  .howto p{margin:0;max-width:60ch}
+  .howto dl{display:grid;gap:8px;margin:0}
+  .howto dl div{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);align-items:center;gap:12px}
+  .howto dt{display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+  .howto dd{margin:0;color:var(--muted);font-size:14px}
+  .or{font-size:12px;color:var(--muted);padding-inline:2px}
+  kbd{display:inline-block;min-width:26px;text-align:center;font:600 12px/1 var(--body);color:var(--fg);background:var(--surface-2);border:1px solid var(--line);border-bottom-width:3px;border-radius:6px;padding:5px 7px;white-space:nowrap}
+  .ghost{font:500 14px var(--body);color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer;transition:border-color .2s}
+  .ghost:hover:not(:disabled){border-color:var(--fg)}
+  .ghost:disabled{opacity:.45;cursor:default}
+
+  .foot{color:var(--muted);font-size:13px;padding-top:56px}
+  @media (prefers-reduced-motion: reduce){*,*::before{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap bar">
+    <a class="logo" href="#"><span class="logo-mark" aria-hidden="true"></span>GAME BOX</a>
+    <label class="search"><span class="sr">Search games</span><input id="search" type="search" placeholder="Search games" autocomplete="off"></label>
+  </div>
+</header>
+
+<main id="home" class="wrap">
+  <section class="intro">
+    <h1>Pick a game and play it right here.</h1>
+    <p><span id="total">34</span> original browser games across every genre, from first-person horror to dress-up. Nothing to download, and your high scores stay saved on this device.</p>
+  </section>
+  <div class="filters">
+    <div class="chips" id="chips" role="group" aria-label="Filter by genre"></div>
+    <span class="count" id="count"></span>
+  </div>
+  <div class="grid" id="grid"></div>
+  <section class="elsewhere">
+    <h2>On other sites</h2>
+    <div class="grid">
+      <a class="tile" href="https://www.kodub.com/apps/polytrack" target="_blank" rel="noopener">
+        <span class="thumb"><img src="thumbs/polytrack.svg" alt="" width="320" height="200" loading="lazy"></span>
+        <span class="name">PolyTrack &#8599;</span>
+        <span class="meta">Racing · official site by Kodub</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<main id="player" class="wrap" hidden>
+  <div class="phead">
+    <a class="back" href="#">&larr; All games</a>
+    <h1 id="ptitle"></h1>
+    <dl class="scores">
+      <div><dt>Score</dt><dd id="score">000000</dd></div>
+      <div><dt>HI</dt><dd id="best">000000</dd></div>
+    </dl>
+  </div>
+  <div class="stage" id="stage">
+    <canvas id="cv"></canvas>
+    <div class="veil" id="veil">
+      <p class="vkind" id="vkind"></p>
+      <h2 id="vtitle"></h2>
+      <p id="vtext"></p>
+      <button class="btn" id="vbtn" type="button">Play</button>
+    </div>
+  </div>
+  <div class="pbar">
+    <span class="info" id="info"></span>
+    <span class="keys">Space: start · P: pause · Esc: all games</span>
+    <span class="pbtns">
+      <button class="ghost" id="pause" type="button">Pause</button>
+      <button class="ghost" id="mute" type="button">Sound on</button>
+      <button class="ghost" id="fs" type="button">Fullscreen</button>
+    </span>
+  </div>
+  <section class="howto">
+    <div><h2>About this game</h2><p id="about"></p></div>
+    <div><h2>Controls</h2><dl id="ctrl"></dl></div>
+  </section>
+  <section class="more">
+    <h2>More games</h2>
+    <div class="grid" id="more"></div>
+  </section>
+</main>
+
+<footer class="wrap foot">Every game in the grid is original and made for Game Box. PolyTrack is made by Kodub and opens on its official site.</footer>
+
+<script src="js/core.js"></script>
+<script src="js/games/horror.js"></script>
+<script src="js/games/rpg.js"></script>
+<script src="js/games/racer.js"></script>
+<script src="js/games/drift.js"></script>
+<script src="js/games/platformer.js"></script>
+<script src="js/games/zombie.js"></script>
+<script src="js/games/survivor.js"></script>
+<script src="js/games/fighter.js"></script>
+<script src="js/games/stealth.js"></script>
+<script src="js/games/dressup.js"></script>
+<script src="js/games/td.js"></script>
+<script src="js/games/cards.js"></script>
+<script src="js/games/match3.js"></script>
+<script src="js/games/rhythm.js"></script>
+<script src="js/games/soccer.js"></script>
+<script src="js/games/pinball.js"></script>
+<script src="js/games/conquest.js"></script>
+<script src="js/games/artillery.js"></script>
+<script src="js/games/farm.js"></script>
+<script src="js/games/cafe.js"></script>
+<script src="js/games/survival.js"></script>
+<script src="js/games/orbit.js"></script>
+<script src="js/games/fishing.js"></script>
+<script src="js/games/idle.js"></script>
+<script src="js/games/typing.js"></script>
+<script src="js/games/blob.js"></script>
+<script src="js/games/shooter.js"></script>
+<script src="js/games/runner.js"></script>
+<script src="js/games/flyer.js"></script>
+<script src="js/games/snake.js"></script>
+<script src="js/games/bricks.js"></script>
+<script src="js/games/dodge.js"></script>
+<script src="js/games/memory.js"></script>
+<script src="js/games/aim.js"></script>
+</body>
+</html>

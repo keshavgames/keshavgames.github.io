@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d1446"/><stop offset="1" stop-color="#0d0b24"/></linearGradient>
+    <pattern id="cells" width="40" height="40" patternUnits="userSpaceOnUse" x="20" y="10"><rect x="2" y="2" width="36" height="36" rx="7" fill="#ffffff" fill-opacity=".07"/></pattern>
+    <path id="dia" d="M0-14l14 14-14 14-14-14z"/><circle id="cir" r="12"/><path id="tri" d="M0-14l14 22h-28z"/><path id="hex" d="M13 0l-6.5 11h-13l-6.5-11 6.5-11h13z"/><path id="sq" d="M-10-10h20v20h-20z"/><path id="star" d="M0-14l4 9 10 1-7.5 6.5 2.5 10-9-5.5-9 5.5 2.5-10-7.5-6.5 10-1z"/>
+  </defs>
+  <rect width="320" height="200" fill="url(#bg)"/>
+  <rect x="20" y="10" width="280" height="180" rx="12" fill="url(#cells)"/>
+  <g>
+    <use href="#dia" x="40" y="30" fill="#ff6b8b"/><use href="#cir" x="80" y="30" fill="#5ee6c1"/><use href="#tri" x="120" y="30" fill="#ffcf5c"/><use href="#hex" x="160" y="30" fill="#8b7bff"/><use href="#sq" x="200" y="30" fill="#5cb8ff"/><use href="#star" x="240" y="30" fill="#ff9f5c"/><use href="#cir" x="280" y="30" fill="#5ee6c1"/>
+    <use href="#hex" x="40" y="70" fill="#8b7bff"/><use href="#dia" x="80" y="70" fill="#ff6b8b"/><use href="#cir" x="120" y="70" fill="#5ee6c1"/><use href="#tri" x="160" y="70" fill="#ffcf5c"/><use href="#tri" x="200" y="70" fill="#ffcf5c"/><use href="#tri" x="240" y="70" fill="#ffcf5c"/><use href="#sq" x="280" y="70" fill="#5cb8ff"/>
+    <use href="#sq" x="40" y="110" fill="#5cb8ff"/><use href="#star" x="80" y="110" fill="#ff9f5c"/><use href="#dia" x="120" y="110" fill="#ff6b8b"/><use href="#cir" x="160" y="110" fill="#5ee6c1"/><use href="#hex" x="200" y="110" fill="#8b7bff"/><use href="#dia" x="240" y="110" fill="#ff6b8b"/><use href="#tri" x="280" y="110" fill="#ffcf5c"/>
+    <use href="#tri" x="40" y="150" fill="#ffcf5c"/><use href="#hex" x="80" y="150" fill="#8b7bff"/><use href="#sq" x="120" y="150" fill="#5cb8ff"/><use href="#star" x="160" y="150" fill="#ff9f5c"/><use href="#cir" x="200" y="150" fill="#5ee6c1"/><use href="#sq" x="240" y="150" fill="#5cb8ff"/><use href="#dia" x="280" y="150" fill="#ff6b8b"/>
+  </g>
+  <rect x="140" y="52" width="120" height="36" rx="10" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <g fill="#ffffff"><path d="M266 50l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/><path d="M146 46l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5z"/></g>
+  <circle cx="160" cy="150" r="20" fill="none" stroke="#fff" stroke-width="2.5"/>
+</svg>

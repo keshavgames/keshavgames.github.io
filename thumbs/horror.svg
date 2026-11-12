@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200">
+  <defs>
+    <radialGradient id="v" cx=".5" cy=".52" r=".72"><stop offset=".3" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".92"/></radialGradient>
+    <radialGradient id="beam" cx=".5" cy=".55" r=".5"><stop offset="0" stop-color="#fff3c4" stop-opacity=".42"/><stop offset="1" stop-color="#fff3c4" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="320" height="200" fill="#0b0d0b"/>
+  <path d="M0 0H320L196 72H124Z" fill="#1d201c"/>
+  <path d="M0 200H320L196 128H124Z" fill="#2c2a25"/>
+  <path d="M0 0L124 72V128L0 200Z" fill="#3c463b"/>
+  <path d="M320 0L196 72V128L320 200Z" fill="#343c33"/>
+  <path d="M0 132L124 112V128L0 200Z" fill="#2a3229"/>
+  <path d="M320 132L196 112V128L320 200Z" fill="#252c24"/>
+  <g stroke="#2a3129" stroke-width="2">
+    <path d="M0 40L124 84M0 80L124 96M320 40L196 84M320 80L196 96"/>
+    <path d="M40 22V176M80 45V152M280 22V176M240 45V152" stroke-opacity=".5"/>
+  </g>
+  <path d="M60 60q6 30 2 64M66 62q3 22 0 40" stroke="#5a0f14" stroke-width="5" fill="none" stroke-linecap="round" opacity=".8"/>
+  <rect x="124" y="72" width="72" height="56" fill="#121411"/>
+  <g fill="#8f8a80">
+    <ellipse cx="160" cy="93" rx="4" ry="5"/>
+    <path d="M155 99h10l-1 14h-8z"/>
+    <rect x="151" y="99" width="2.5" height="20"/><rect x="166.5" y="99" width="2.5" height="20"/>
+    <rect x="156" y="113" width="3" height="15"/><rect x="161" y="113" width="3" height="15"/>
+  </g>
+  <rect x="157.5" y="91" width="1.5" height="1.5" fill="#ff1e2e"/><rect x="161" y="91" width="1.5" height="1.5" fill="#ff1e2e"/>
+  <ellipse cx="160" cy="108" rx="130" ry="84" fill="url(#beam)"/>
+  <rect width="320" height="200" fill="url(#v)"/>
+  <rect x="14" y="176" width="70" height="7" rx="3.5" fill="#d9374b"/>
+  <rect x="14" y="187" width="50" height="5" rx="2.5" fill="#ffcf5c"/>
+</svg>

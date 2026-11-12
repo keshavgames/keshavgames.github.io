@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200">
+  <defs>
+    <radialGradient id="spot" cx=".5" cy=".55" r=".6"><stop offset="0" stop-color="#5a3f7a"/><stop offset="1" stop-color="#241b33"/></radialGradient>
+  </defs>
+  <rect width="320" height="200" fill="url(#spot)"/>
+  <ellipse cx="160" cy="190" rx="70" ry="9" fill="#3a2d52"/>
+  <g transform="translate(160 190) scale(.5)">
+    <path d="M-36-322q-16 80-4 124q40 10 80 0q12-44-4-124z" fill="#d9b36a"/>
+    <rect x="-25" y="-146" width="19" height="136" rx="9" fill="#e9b994"/><rect x="6" y="-146" width="19" height="136" rx="9" fill="#e9b994"/>
+    <path d="M-31-174h62q40 84 66 168q-96 12-192 0q26-84 64-168z" fill="#e64a5f"/>
+    <path d="M-34-130q30 120 0 124M34-130q-30 120 0 124" stroke="#b8323f" stroke-width="3" fill="none"/>
+    <path d="M-38-244h76l-12 68h-52z" fill="#e64a5f"/>
+    <circle cx="-40" cy="-238" r="14" fill="#f07a8a"/><circle cx="40" cy="-238" r="14" fill="#f07a8a"/>
+    <path d="M-38-244l26 12 12-8 12 8 26-12" stroke="#c9a227" stroke-width="4" fill="none"/>
+    <path d="M-45-232l-6 80M45-232l6 80" stroke="#e9b994" stroke-width="13" stroke-linecap="round"/>
+    <rect x="-8" y="-274" width="16" height="28" rx="6" fill="#e9b994"/>
+    <circle cy="-296" r="30" fill="#e9b994"/>
+    <path d="M-32-298a32 32 0 0 1 64 0l-10-6-22-10-22 10z" fill="#d9b36a"/>
+    <circle cx="-11" cy="-294" r="4.5" fill="#2b2235"/><circle cx="11" cy="-294" r="4.5" fill="#2b2235"/>
+    <path d="M-6-284a6 6 0 0 0 12 0" stroke="#a8455a" stroke-width="3" fill="none"/>
+    <path d="M-28-322l-2-28 14 14 16-20 16 20 14-14-2 28z" fill="#c9a227"/><circle cy="-334" r="4" fill="#4fa8ff"/>
+  </g>
+  <g transform="translate(40 40)"><path d="M0-18v6M0-12l-24 16h48z" stroke="#c4c8ee" stroke-width="3" fill="none" stroke-linejoin="round"/><path d="M-20 6h40l-4 30h-32z" fill="#7fe0c2"/></g>
+  <g transform="translate(278 50)"><path d="M0-18v6M0-12l-24 16h48z" stroke="#c4c8ee" stroke-width="3" fill="none" stroke-linejoin="round"/><path d="M-20 6h40l-2 18h-36z" fill="#ffd25c"/><path d="M-16 24h32l4 20h-40z" fill="#2b3a78"/></g>
+  <g fill="#ffcf5c"><path d="M92 106l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/><path d="M232 140l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/><path d="M250 112l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5z"/></g>
+  <g><circle cx="30" cy="180" r="7" fill="#e64a5f"/><circle cx="48" cy="180" r="7" fill="#ffd25c"/><circle cx="66" cy="180" r="7" fill="#7fe0c2"/><circle cx="84" cy="180" r="7" fill="#9b6bff"/></g>
+</svg>

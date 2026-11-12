@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200">
+  <defs>
+    <radialGradient id="cone" cx=".2" cy=".55" r=".9"><stop offset="0" stop-color="#fff3c4" stop-opacity=".55"/><stop offset="1" stop-color="#fff3c4" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="320" height="200" fill="#0d120c"/>
+  <path d="M90 110L320 20V200Z" fill="#25301f"/>
+  <path d="M90 110L320 20V200Z" fill="url(#cone)"/>
+  <circle cx="90" cy="110" r="44" fill="#25301f" opacity=".9"/>
+  <ellipse cx="200" cy="140" rx="22" ry="12" fill="#4a0d10" opacity=".7"/>
+  <rect x="236" y="40" width="34" height="30" rx="3" fill="#8a6a3a"/><path d="M239 43l28 24" stroke="#5e4524" stroke-width="2"/>
+  <g stroke="#ffe6a0" stroke-width="2" stroke-linecap="round"><path d="M110 104l30-8M150 100l30-8"/></g>
+  <g>
+    <circle cx="214" cy="92" r="12" fill="#6f8f5a"/><circle cx="208" cy="90" r="2" fill="#ff3b3b"/><circle cx="208" cy="96" r="2" fill="#ff3b3b"/>
+    <path d="M206 84l-14-6M206 100l-14 6" stroke="#6f8f5a" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="262" cy="128" r="17" fill="#55704a"/><circle cx="254" cy="124" r="2.5" fill="#ff3b3b"/><circle cx="254" cy="132" r="2.5" fill="#ff3b3b"/>
+    <circle cx="280" cy="80" r="11" fill="#8fa86a"/><circle cx="274" cy="78" r="2" fill="#ff3b3b"/><circle cx="274" cy="84" r="2" fill="#ff3b3b"/>
+  </g>
+  <g fill="#ff3b3b" opacity=".8"><circle cx="30" cy="40" r="1.6"/><circle cx="36" cy="40" r="1.6"/><circle cx="40" cy="170" r="1.6"/><circle cx="46" cy="170" r="1.6"/></g>
+  <g transform="translate(90 110) rotate(-12)"><rect x="6" y="-3" width="20" height="6" rx="2" fill="#2b2b30"/><circle r="12" fill="#3d6fd9"/><circle cx="2" r="6.5" fill="#f2d3b1"/></g>
+  <circle cx="122" cy="103" r="5" fill="#fff3c4"/>
+</svg>

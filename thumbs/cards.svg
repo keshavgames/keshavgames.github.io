@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b1235"/><stop offset="1" stop-color="#2b1d4a"/></linearGradient></defs>
+  <rect width="320" height="200" fill="url(#bg)"/>
+  <path d="M232 112L262 24L292 112Z" fill="#8b7bff"/><circle cx="262" cy="60" r="10" fill="#1b1235"/><circle cx="292" cy="54" r="5" fill="#ff6bff"/>
+  <rect x="226" y="122" width="72" height="8" rx="4" fill="#e04e5f"/>
+  <rect x="236" y="4" width="52" height="16" rx="8" fill="#00000066"/><path d="M250 8l8 8M258 8l-8 8" stroke="#ff6b8b" stroke-width="2"/><rect x="262" y="10" width="16" height="4" rx="2" fill="#ff6b8b"/>
+  <g transform="translate(110 150) rotate(-14)"><rect x="-34" y="-46" width="68" height="92" rx="8" fill="#f3ead7"/><rect x="-30" y="-42" width="60" height="20" rx="5" fill="#3d6fd9"/><path d="M-12 -2h24v14q-12 10-24 0z" fill="#3d6fd9"/><rect x="-24" y="22" width="48" height="4" rx="2" fill="#bfb49a"/><rect x="-18" y="30" width="36" height="4" rx="2" fill="#bfb49a"/></g>
+  <g transform="translate(160 140)"><rect x="-34" y="-46" width="68" height="92" rx="8" fill="#f3ead7"/><rect x="-30" y="-42" width="60" height="20" rx="5" fill="#c4364a"/><path d="M-14 10l24-24M-10 -14l20 20" stroke="#c4364a" stroke-width="5" stroke-linecap="round"/><rect x="-24" y="22" width="48" height="4" rx="2" fill="#bfb49a"/><rect x="-18" y="30" width="36" height="4" rx="2" fill="#bfb49a"/><circle cx="-34" cy="-46" r="10" fill="#2b2f55"/><circle cx="-34" cy="-46" r="5" fill="#ffcf5c"/></g>
+  <g transform="translate(210 150) rotate(14)"><rect x="-34" y="-46" width="68" height="92" rx="8" fill="#f3ead7"/><rect x="-30" y="-42" width="60" height="20" rx="5" fill="#8b5cd6"/><path d="M0-10l5 10 10 2-8 7 2 11-9-5-9 5 2-11-8-7 10-2z" fill="#8b5cd6"/><rect x="-24" y="22" width="48" height="4" rx="2" fill="#bfb49a"/></g>
+  <circle cx="40" cy="160" r="24" fill="#2b2f55"/><circle cx="40" cy="160" r="18" fill="#ffcf5c"/>
+  <path d="M30 40L52 -4 74 40Z" fill="#3d4a8a" transform="translate(0 46)"/><circle cx="52" cy="84" r="10" fill="#f0c9a0"/>
+</svg>
