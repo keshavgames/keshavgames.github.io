@@ -30,10 +30,10 @@ Status: [x] done, [~] in progress, [ ] todo. (L50) = 50 levels.
 - [x] Dead Acre (zombie)  - [x] Star Defender
 - [x] Strike Point: 1v1 tactical FPS, bomb rounds, buy phase, bot / 2P split / online
 - [x] Storm Royale: battle royale, 24 players, storm, loot, build walls, bots + duo + online
-- [ ] Laser Arena: FPS deathmatch vs bots, several maps
-- [ ] Tank Clash: top-down tanks, 2P local / bots, maze arenas
-- [ ] Sky Ace: dogfights 2P / bots
-- [ ] Sniper Ridge: sniper missions (L50)
+- [x] Laser Arena: neon FPS free-for-all vs bots, 3 arenas, 20 matches
+- [x] Tank Clash: Blender tanks, bot waves (30) or 2P duel
+- [x] Sky Ace: Blender biplanes, 30 waves or 2P duel
+- [x] Sniper Ridge: scope, breath, wind, Blender tin robots, 50 missions
 
 ### Horror
 - [x] Hollow Ward: Blender monster, screams, jumpscare, 50 floors, fuse compass

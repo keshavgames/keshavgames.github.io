@@ -432,7 +432,7 @@
     e.preventDefault(); toGame(e); G.pointer.down = true; G.pointer.used = performance.now();
     cv.setPointerCapture?.(e.pointerId);
     if (game.pointerLock && document.pointerLockElement !== cv) cv.requestPointerLock?.()?.catch?.(() => {});
-    game.pointer?.('down', G.pointer.x, G.pointer.y);
+    game.pointer?.('down', G.pointer.x, G.pointer.y, e);
   });
   cv.addEventListener('pointermove', e => {
     toGame(e); G.pointer.used = performance.now();
@@ -440,7 +440,7 @@
   });
   cv.addEventListener('pointerup', e => {
     toGame(e);
-    if (game && G.state === 'play' && G.pointer.down) game.pointer?.('up', G.pointer.x, G.pointer.y);
+    if (game && G.state === 'play' && G.pointer.down) game.pointer?.('up', G.pointer.x, G.pointer.y, e);
     G.pointer.down = false;
   });
   cv.addEventListener('contextmenu', e => e.preventDefault());
