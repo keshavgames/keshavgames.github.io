@@ -37,12 +37,12 @@ Status: [x] done, [~] in progress, [ ] todo. (L50) = 50 levels.
 
 ### Horror
 - [x] Hollow Ward: Blender monster, screams, jumpscare, 50 floors, fuse compass
-- [ ] Last Shell: shell-gamble duel vs a creepy dealer, items, rounds
-- [ ] Night Shift: watch cameras, close doors, survive 5 nights
-- [ ] Whisper Woods: first-person forest, find notes, stalker
-- [ ] Crawlspace: side-view chase, hide in lockers (L50)
-- [ ] Doll House: top-down rooms, keys, a doll that moves when unseen (L50)
-- [ ] Dead Signal: first-person space-station horror
+- [x] Last Shell: carnival shell-gamble duel vs a Blender Ringmaster, items, tickets
+- [x] Night Shift: wax museum cameras and doors, Blender wax figures, 20 nights
+- [x] Whisper Woods: first-person forest, lanterns, Blender antlered stalker, 30 nights
+- [x] Crawlspace: side-view chase, lockers, Blender Crawler and kid, 50 houses
+- [x] Doll House: top-down, Blender doll that moves in the dark, 50 houses
+- [x] Dead Signal: first-person station, relays, tracker, bulkheads, Blender Signal, 30 decks
 
 ### Action
 - [x] Lantern Night  - [x] Dojo Duel  - [x] Blob Arena  - [x] Gem Runner  - [x] Cave Flyer
@@ -110,3 +110,4 @@ Status: [x] done, [~] in progress, [ ] todo. (L50) = 50 levels.
 ## Progress log
 - 13 Nov 2026: plan written.
 - 13 Nov 2026: core v3 (levels, modes, online rooms), shared raycaster, Blender monster + soldier kit, Hollow Ward rebuilt, Strike Point, Storm Royale. 36 games.
+- 13 Nov 2026: horror set done (Last Shell, Night Shift, Whisper Woods, Crawlspace, Doll House, Dead Signal). tools/harness.js added for headless sims and thumbnails. 42 games.
