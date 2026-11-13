@@ -55,6 +55,18 @@ def limb(name, a, b, r, material, parent):
 
 def gun(kind, parent, M):
     """A gun along -Y with its grip at the origin."""
+    if kind == 'blaster':  # Laser Arena: a chunky white blaster with glowing coils
+        white = mat('white', (.85, .87, .9), .3); glow = mat('glow', (.2, .95, 1), .2, 0, 12)
+        box('body', (.065, .46, .085), (0, -.22, 0), white, parent, .025)
+        box('top', (.045, .3, .04), (0, -.26, .06), M['gun'], parent, .012)
+        box('grip', (.055, .07, .14), (0, .02, -.09), M['gun'], parent, .015, rot=(math.radians(-15), 0, 0))
+        limb('barrel', (0, -.44, .01), (0, -.86, .01), .024, white, parent)
+        for i in range(3):
+            bpy.ops.mesh.primitive_torus_add(location=(0, -.52 - i * .1, .01), major_radius=.036, minor_radius=.01, rotation=(math.radians(90), 0, 0))
+            t = bpy.context.object; t.parent = parent; t.data.materials.append(glow)
+        box('cell', (.075, .12, .04), (0, -.16, -.05), glow, parent, .01)
+        limb('tip', (0, -.86, .01), (0, -.9, .01), .018, glow, parent)
+        return
     L = {'pistol': .24, 'smg': .48, 'rifle': .78, 'sniper': 1.05}[kind]
     box('body', (.075, L * .55, .1), (0, -L * .2, 0), M['gun'], parent, .01)
     box('grip', (.05, .06, .13), (0, .02, -.08), M['gun'], parent, .01, rot=(math.radians(-15), 0, 0))
@@ -131,8 +143,9 @@ if not WHAT or 'top' in WHAT:
         for frame in (0, 1):
             reset(); rig = soldier(color, frame); rig.rotation_euler = (0, 0, math.pi); lights_and_camera(top=True, ortho_scale=1.5)
             render(f'top_{color}_{frame}', 112, 112)
-if not WHAT or 'guns' in WHAT:
-    for kind in ('pistol', 'smg', 'rifle', 'sniper'):
+if not WHAT or 'guns' in WHAT or 'blaster' in WHAT:
+    for kind in ('pistol', 'smg', 'rifle', 'sniper', 'blaster'):
+        if WHAT and 'guns' not in WHAT and kind != 'blaster': continue
         sc = reset()
         M = {'team': mat('team', COLORS['orange'], .45), 'gun': mat('gun', (0.05, 0.05, 0.06), .35, .4), 'metal': mat('metal', (0.3, 0.32, 0.36), .3, .9), 'dark': mat('dark', (0.06, 0.065, 0.08), .7)}
         g = bpy.data.objects.new('Gun', None); sc.collection.objects.link(g)
