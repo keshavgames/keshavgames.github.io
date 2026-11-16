@@ -20,7 +20,7 @@
     info() { return `Level ${this.level} · ${this.moves} moves left`; },
     init() {
       this.level = 1; this.moves = 25; this.target = 1200; this.levelScore = 0; this.parts = [];
-      this.sel = null; this.cursor = {r: 3, c: 3}; this.phase = 'idle'; this.combo = 0; this.idleT = 0; this.hint = null;
+      this.sel = null; this.cur = {r: 3, c: 3}; this.phase = 'idle'; this.combo = 0; this.idleT = 0; this.hintMove = null;
       this.fill();
     },
     gem(t, r, c, fromY) { return {t, sp: null, x: cx(c), y: fromY ?? cy(r), scale: 1}; },
@@ -50,7 +50,7 @@
     trySwap(a, b) {
       if (this.phase !== 'idle' || this.moves <= 0) return;
       if (Math.abs(a.r - b.r) + Math.abs(a.c - b.c) !== 1) { this.sel = b; return; }
-      this.sel = null; this.hint = null; this.idleT = 0;
+      this.sel = null; this.hintMove = null; this.idleT = 0;
       this.swapCells(a, b); this.swapA = a; this.swapB = b; this.phase = 'swap'; G.sfx('click');
     },
     afterSwap() {
@@ -150,12 +150,12 @@
     },
     key(k) {
       const dirs = {ArrowUp: [-1, 0], ArrowDown: [1, 0], ArrowLeft: [0, -1], ArrowRight: [0, 1]};
-      if (k === 'h') { this.hint = this.findMove(); return; }
-      if (k === ' ' || k === 'Enter') { this.sel = this.sel ? null : {...this.cursor}; return; }
+      if (k === 'h') { this.hintMove = this.findMove(); return; }
+      if (k === ' ' || k === 'Enter') { this.sel = this.sel ? null : {...this.cur}; return; }
       const d = dirs[k]; if (!d) return;
-      const next = {r: G.clamp(this.cursor.r + d[0], 0, N - 1), c: G.clamp(this.cursor.c + d[1], 0, N - 1)};
+      const next = {r: G.clamp(this.cur.r + d[0], 0, N - 1), c: G.clamp(this.cur.c + d[1], 0, N - 1)};
       if (this.sel) this.trySwap(this.sel, next);
-      this.cursor = next;
+      this.cur = next;
     },
     update(dt) {
       let moving = false;
@@ -170,7 +170,7 @@
       else if (this.phase === 'back' && !moving) this.phase = 'idle';
       else if (this.phase === 'clear' && (this.clearT -= dt) <= 0) this.collapse();
       else if (this.phase === 'fall' && !moving) this.resolve();
-      if (this.phase === 'idle' && (this.idleT += dt) > 7 && !this.hint) this.hint = this.findMove();
+      if (this.phase === 'idle' && (this.idleT += dt) > 7 && !this.hintMove) this.hintMove = this.findMove();
     },
     draw(ctx, dt) {
       const bg = ctx.createLinearGradient(0, 0, 0, H);
@@ -183,7 +183,7 @@
       for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) {
         const g = this.g[r][c], rad = 20 * g.scale;
         if (rad <= 0) continue;
-        const isHint = this.hint && this.hint.some(p => p.r === r && p.c === c);
+        const isHint = this.hintMove && this.hintMove.some(p => p.r === r && p.c === c);
         shape(ctx, g.t, g.x, g.y + (isHint ? Math.sin(now * 10) * 3 : 0), rad);
         if (g.sp === 'row' || g.sp === 'col') { ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 3; ctx.beginPath(); if (g.sp === 'row') { ctx.moveTo(g.x - 18, g.y); ctx.lineTo(g.x + 18, g.y); } else { ctx.moveTo(g.x, g.y - 18); ctx.lineTo(g.x, g.y + 18); } ctx.stroke(); }
         if (g.sp === 'bomb') { ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(g.x, g.y, rad + 2 + Math.sin(now * 6) * 1.5, 0, Math.PI * 2); ctx.stroke(); }
@@ -191,7 +191,7 @@
       }
       ctx.restore();
       if (this.sel) { ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 3; ctx.beginPath(); ctx.roundRect(OX + this.sel.c * S + 2, OY + this.sel.r * S + 2, S - 4, S - 4, 8); ctx.stroke(); }
-      if (performance.now() - G.pointer.used > 3000) { ctx.strokeStyle = 'rgba(255,207,92,.7)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.roundRect(OX + this.cursor.c * S + 4, OY + this.cursor.r * S + 4, S - 8, S - 8, 8); ctx.stroke(); }
+      if (performance.now() - G.pointer.used > 3000) { ctx.strokeStyle = 'rgba(255,207,92,.7)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.roundRect(OX + this.cur.c * S + 4, OY + this.cur.r * S + 4, S - 8, S - 8, 8); ctx.stroke(); }
       G.fx(this.parts, dt);
       G.text(`LEVEL ${this.level}`, 18, 32, {size: 18, display: true, color: '#ffcf5c'});
       G.bar({x: 18, y: 44, w: 300, h: 14, v: this.levelScore, max: this.target, color: '#5ee6c1', label: `TARGET ${this.levelScore}/${this.target}`, id: 'goal'});

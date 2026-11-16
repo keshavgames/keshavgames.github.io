@@ -15,7 +15,7 @@
     info() { return `Stage ${G.level} · ${this.place()}${['', 'st', 'nd', 'rd'][this.place()] || 'th'} · ${Math.round(this.speed / MAXV * 160)} km/h`; },
     init() {
       const n = G.level, R = G.seeded(n * 37 + 11);
-      this.look = SKIES[Math.floor((n - 1) / 10) % 3];
+      this.sky = SKIES[Math.floor((n - 1) / 10) % 3];
       const segs = this.segs = [];
       const lastY = () => segs.length ? segs.at(-1).p2.y : 0;
       const add = (curve, y) => { const i = segs.length; segs.push({i, p1: {y: lastY(), z: i * SEG}, p2: {y, z: (i + 1) * SEG}, curve, sprites: [], dark: Math.floor(i / 3) % 2}); };
@@ -76,7 +76,7 @@
       const s = DEPTH / z; return {x: Math.round(W / 2 + s * (p.x - cx) * W / 2), y: Math.round(H / 2 - s * (p.y - cy) * H / 2), w: Math.round(s * ROAD * W / 2), s};
     },
     draw(ctx, dt) {
-      const L = this.look, j = this.shake > 0 ? (Math.random() - .5) * 8 : 0;
+      const L = this.sky, j = this.shake > 0 ? (Math.random() - .5) * 8 : 0;
       ctx.save(); ctx.translate(j, j * .5);
       const sky = ctx.createLinearGradient(0, 0, 0, H / 2); sky.addColorStop(0, L.sky[0]); sky.addColorStop(1, L.sky[1]); ctx.fillStyle = sky; ctx.fillRect(-10, -10, W + 20, H + 20);
       const base = this.seg(this.z), bp = (this.z % SEG) / SEG, curveOff = this.segs.slice(base.i, base.i + 20).reduce((s, q) => s + q.curve, 0);

@@ -32,7 +32,9 @@ window.sim = (id, {level = 1, runs = 20, seconds = 300, dt = 1 / 30, policy = ()
   for (let r = 0; r < runs; r++) {
     let end = null; G.end = t => { end = end || 'end: ' + t; }; G.win = (s, t) => { end = end || `win${s ?? ''}`; };
     G.level = level; G.mode = mode; G.score = 0; G.keys = {};
+    const spec = {id: g.id, w: g.w, h: g.h, title: g.title, hint: g.hint, cursor: g.cursor, key: g.key, look: g.look, pointer: g.pointer, levels: g.levels};
     try { g.init(); } catch (e) { errors++; firstError = firstError || e.stack; continue; }
+    for (const k in spec) if (g[k] !== spec[k]) { errors++; firstError = firstError || `init() overwrote the game's own "${k}" field`; }
     let t = 0;
     for (; t < seconds && !end; t += dt) {
       try { policy(g, t); g.update(dt); } catch (e) { errors++; firstError = firstError || e.stack; break; }

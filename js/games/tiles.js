@@ -28,14 +28,14 @@
     info() { return `Song ${G.level} · ${this.hit}/${this.notes.length}`; },
     init() {
       this.notes = song(G.level); this.hit = 0; this.lives = 3; this.t = -2; this.flash = []; this.combo = 0; this.best = 0; this.done = null; this.parts = []; this.hue = HUES[(G.level - 1) % HUES.length];
-      this.bpm = 92 + Math.min(80, G.level * 3); this.beat = 60 / this.bpm; this.speed = 260 + G.level * 6; this.holding = null; this.key = 60 + (G.level % 5);
+      this.bpm = 92 + Math.min(80, G.level * 3); this.beat = 60 / this.bpm; this.speed = 260 + G.level * 6; this.holding = null; this.root = 60 + (G.level % 5);
     },
     lane(c) {
       if (this.done) return;
       const lineT = this.t, nt = this.notes.find(q => !q.done && !q.miss);
       if (nt && nt.col === c && Math.abs(nt.t * this.beat - lineT) < .28) {
         nt.done = true; this.hit++; this.combo++; this.best = Math.max(this.best, this.combo);
-        G.note(G.midi(this.key + SCALE[nt.deg]), .5 + nt.hold * .3, {type: 'triangle', vol: .16}); G.note(G.midi(this.key + SCALE[nt.deg] - 12), .4, {type: 'sine', vol: .06});
+        G.note(G.midi(this.root + SCALE[nt.deg]), .5 + nt.hold * .3, {type: 'triangle', vol: .16}); G.note(G.midi(this.root + SCALE[nt.deg] - 12), .4, {type: 'sine', vol: .06});
         G.score += 10 + Math.min(40, this.combo); this.flash.push({c, t: .25, ok: true});
         if (nt.hold > 1) this.holding = {nt, c, until: (nt.t + nt.hold) * this.beat};
         if (this.hit === this.notes.length) this.finish();

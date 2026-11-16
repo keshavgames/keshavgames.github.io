@@ -19,9 +19,9 @@
     },
     newRound() {
       const a = [G.rnd(6), G.rnd(6), G.rnd(6)], base = 260 + G.rnd(40);
-      this.h = Array.from({length: W}, (_, x) => base - Math.sin(x / 90 + a[0]) * 50 - Math.sin(x / 37 + a[1]) * 18 - Math.sin(x / 13 + a[2]) * 5);
+      this.ground = Array.from({length: W}, (_, x) => base - Math.sin(x / 90 + a[0]) * 50 - Math.sin(x / 37 + a[1]) * 18 - Math.sin(x / 13 + a[2]) * 5);
       this.me.x = 70 + G.rnd(90); this.cpu.x = W - 70 - G.rnd(90);
-      this.me.y = this.h[Math.round(this.me.x)]; this.cpu.y = this.h[Math.round(this.cpu.x)];
+      this.me.y = this.ground[Math.round(this.me.x)]; this.cpu.y = this.ground[Math.round(this.cpu.x)];
       this.cpu.hp = 100; this.ammo = WEAPONS.map(w => w.count); this.weapon = 0;
       this.shells = []; this.booms = []; this.turn = 'me'; this.newTurn();
     },
@@ -47,7 +47,7 @@
       for (let i = 0; i < 600; i++) {
         vx += wind * .02; vy += GRAV * .02; x += vx * .02; y += vy * .02;
         if (x < 0 || x >= W) return {x, y};
-        if (y >= this.h[Math.floor(x)] || G.dist(x, y, this.me.x, this.me.y - 8) < 14) return {x, y};
+        if (y >= this.ground[Math.floor(x)] || G.dist(x, y, this.me.x, this.me.y - 8) < 14) return {x, y};
       }
       return {x, y};
     },
@@ -55,7 +55,7 @@
       this.booms.push({x, y, r: w.r, t: .4}); G.sfx('boom'); G.shake(w.r / 5, .35);
       for (let i = Math.max(0, Math.floor(x - w.r)); i < Math.min(W, Math.ceil(x + w.r)); i++) {
         const d = Math.sqrt(w.r * w.r - (i - x) ** 2);
-        if (y + d > this.h[i]) this.h[i] = Math.min(H - 4, y + d);
+        if (y + d > this.ground[i]) this.ground[i] = Math.min(H - 4, y + d);
       }
       G.burst(this.parts, x, y, '#8a6a4a', 20, 200);
       for (const t of [this.me, this.cpu]) {
@@ -70,7 +70,7 @@
     settle(dt) { // tanks drop onto the ground below them; long drops hurt
       let moving = false;
       for (const t of [this.me, this.cpu]) {
-        const ground = this.h[Math.round(G.clamp(t.x, 0, W - 1))];
+        const ground = this.ground[Math.round(G.clamp(t.x, 0, W - 1))];
         if (t.y < ground - .5) { t.vy += 600 * dt; t.y = Math.min(ground, t.y + t.vy * dt); moving = true; if (!t.fall) t.fall = t.y; }
         else { if (t.fall !== undefined && ground - t.fall > 20) { const dmg = Math.round((ground - t.fall - 20) * .5); t.hp -= dmg; G.popText(this.parts, t.x, t.y - 30, `-${dmg}`, '#ff6b8b'); } t.y = ground; t.vy = 0; t.fall = undefined; }
       }
@@ -83,8 +83,8 @@
         me.pow = G.clamp(me.pow + (G.held('ArrowUp') - G.held('ArrowDown')) * 40 * dt, 10, 100);
         const drive = G.held('d') - G.held('a');
         if (drive && me.fuel > 0) {
-          const nx = G.clamp(me.x + drive * 40 * dt, 10, W - 10), slope = this.h[Math.round(nx)] - this.h[Math.round(me.x)];
-          if (slope > -3) { me.x = nx; me.y = this.h[Math.round(me.x)]; me.fuel -= 40 * dt; }
+          const nx = G.clamp(me.x + drive * 40 * dt, 10, W - 10), slope = this.ground[Math.round(nx)] - this.ground[Math.round(me.x)];
+          if (slope > -3) { me.x = nx; me.y = this.ground[Math.round(me.x)]; me.fuel -= 40 * dt; }
         }
       } else if (this.turn === 'cpu') {
         if ((this.thinkT -= dt) <= 0) {
@@ -103,7 +103,7 @@
         if (s.x < -50 || s.x > W + 50 || s.y > H + 20) { s.dead = true; continue; }
         const xi = Math.floor(s.x);
         const hitTank = [this.me, this.cpu].some(t => (t !== s.from || s.y > s.from.y - 40) && G.dist(s.x, s.y, t.x, t.y - 8) < 14);
-        if (hitTank || (xi >= 0 && xi < W && s.y >= this.h[xi])) { s.dead = true; this.explode(s.x, s.y, s.w); }
+        if (hitTank || (xi >= 0 && xi < W && s.y >= this.ground[xi])) { s.dead = true; this.explode(s.x, s.y, s.w); }
       }
       this.shells = this.shells.filter(s => !s.dead);
       for (const b of this.booms) b.t -= dt;
@@ -120,7 +120,7 @@
       } else if (this.turn === 'flight') this.settle(dt);
     },
     tank(ctx, t, now) {
-      const ground = t.y, slope = Math.atan2(this.h[Math.round(G.clamp(t.x + 8, 0, W - 1))] - this.h[Math.round(G.clamp(t.x - 8, 0, W - 1))], 16);
+      const ground = t.y, slope = Math.atan2(this.ground[Math.round(G.clamp(t.x + 8, 0, W - 1))] - this.ground[Math.round(G.clamp(t.x - 8, 0, W - 1))], 16);
       ctx.save(); ctx.translate(t.x, ground); ctx.rotate(slope);
       G.rr(-16, -10, 32, 10, 4, '#2b2b30');
       for (let i = -12; i <= 12; i += 6) G.circle(i, -4, 3, '#55555f');
@@ -142,10 +142,10 @@
       ctx.lineTo(W, H); ctx.fill();
       for (let i = 0; i < 4; i++) { const cx = ((i * 190 + now * this.wind * .4) % (W + 120) + W + 120) % (W + 120) - 60; G.circle(cx, 50 + i * 18, 18, 'rgba(255,255,255,.5)'); G.circle(cx + 20, 46 + i * 18, 14, 'rgba(255,255,255,.5)'); }
       ctx.fillStyle = '#5a7d3a'; ctx.beginPath(); ctx.moveTo(0, H);
-      for (let x = 0; x < W; x++) ctx.lineTo(x, this.h[x]);
+      for (let x = 0; x < W; x++) ctx.lineTo(x, this.ground[x]);
       ctx.lineTo(W, H); ctx.fill();
       ctx.fillStyle = '#6a4a2f'; ctx.beginPath(); ctx.moveTo(0, H);
-      for (let x = 0; x < W; x++) ctx.lineTo(x, this.h[x] + 8);
+      for (let x = 0; x < W; x++) ctx.lineTo(x, this.ground[x] + 8);
       ctx.lineTo(W, H); ctx.fill();
       this.tank(ctx, this.me, now); this.tank(ctx, this.cpu, now);
       if (this.turn === 'me') { // short dotted preview of the launch arc
