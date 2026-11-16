@@ -66,6 +66,29 @@
     }
     src.start(t); src.stop(t + dur + .02);
   }
+  // musical notes and a small drum kit for the music games
+  const midi = n => 440 * Math.pow(2, (n - 69) / 12);
+  function note(freq, dur = .35, {type = 'triangle', vol = .12, when = 0} = {}) {
+    const a = actx; if (muted || !a || a.state !== 'running') return;
+    const t = a.currentTime + when, g = a.createGain(), o = a.createOscillator();
+    o.type = type; o.frequency.setValueAtTime(freq, t);
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vol, t + .008); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    o.connect(g); g.connect(a.destination); o.start(t); o.stop(t + dur + .02);
+  }
+  function drum(kind, vol = 1, when = 0) {
+    const a = actx; if (muted || !a || a.state !== 'running') return;
+    const t = a.currentTime + when, out = a.createGain(); out.gain.value = vol; out.connect(a.destination);
+    const tone = (f0, f1, dur, v, type = 'sine') => { const o = a.createOscillator(), g = a.createGain(); o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur); g.gain.setValueAtTime(v, t); g.gain.exponentialRampToValueAtTime(.0001, t + dur); o.connect(g); g.connect(out); o.start(t); o.stop(t + dur + .02); };
+    const hiss = (type, f, dur, v, at = 0) => { const s = a.createBufferSource(), fl = a.createBiquadFilter(), g = a.createGain(); s.buffer = noiseBuf(a); fl.type = type; fl.frequency.value = f; g.gain.setValueAtTime(v, t + at); g.gain.exponentialRampToValueAtTime(.0001, t + at + dur); s.connect(fl); fl.connect(g); g.connect(out); s.start(t + at); s.stop(t + at + dur + .02); };
+    if (kind === 'kick') tone(150, 40, .3, .6);
+    if (kind === 'snare') { hiss('highpass', 1200, .18, .35); tone(220, 160, .1, .2, 'triangle'); }
+    if (kind === 'hat') hiss('highpass', 7000, .05, .2);
+    if (kind === 'openhat') hiss('highpass', 6000, .3, .16);
+    if (kind === 'clap') for (const at of [0, .012, .024]) hiss('bandpass', 1500, .09, .3, at);
+    if (kind === 'tom') tone(240, 110, .25, .4);
+    if (kind === 'cymbal') hiss('highpass', 5000, .8, .14);
+    if (kind === 'cow') { tone(800, 780, .15, .12, 'square'); tone(540, 530, .15, .1, 'square'); }
+  }
   function scream(vol = 1, dur = 1.6) { // shrieking voice: noisy formants plus a wavering, distorted howl
     const a = actx;
     if (muted || !a || a.state !== 'running') return;
@@ -194,7 +217,7 @@
     },
     shake(amount = 6, time = .25) { G.shakeAmt = Math.max(G.shakeT > 0 ? G.shakeAmt : 0, amount); G.shakeT = Math.max(G.shakeT, time); },
     flash(color = 'rgba(255,50,80,.4)', time = .3) { G.flashColor = color; G.flashT = G.flashMax = time; },
-    sfx, scream, audio, isMuted: () => muted, img, preload, pixels,
+    sfx, scream, audio, note, drum, midi, isMuted: () => muted, img, preload, pixels,
     load(key) { try { return JSON.parse(localStorage.getItem('gamebox-save-' + key)); } catch { return null; } },
     save(key, data) { try { localStorage.setItem('gamebox-save-' + key, JSON.stringify(data)); } catch {} },
     record() { // keep the high score without ending the run (idle and sandbox games)
