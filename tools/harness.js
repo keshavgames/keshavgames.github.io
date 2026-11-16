@@ -6,6 +6,7 @@
 const find = id => GameBox.list.find(g => g.id === id);
 window.frame = (id, n = 1, dt = 1 / 60) => {
   const g = find(id), c = document.getElementById('cv'), x = c.getContext('2d');
+  if (c.width !== g.w * 1.5 || c.height !== g.h * 1.5) { c.width = g.w * 1.5; c.height = g.h * 1.5; } // match the game's own shape
   for (let i = 0; i < n; i++) g.update(dt);
   x.setTransform(c.width / g.w, 0, 0, c.height / g.h, 0, 0); g.draw(x, dt); x.setTransform(1, 0, 0, 1, 0, 0);
   return 'ok';
@@ -15,6 +16,9 @@ const put = async (path, canvas) => {
   return (await fetch(path, {method: 'PUT', body: b})).status;
 };
 const shrink = (w, h) => { const c = document.getElementById('cv'), t = document.createElement('canvas'); t.width = w; t.height = h;
+  if (c.height >= c.width * .95) { // tall games: fit the whole frame, fill the sides with its edge colour
+    const tx = t.getContext('2d'), px = c.getContext('2d').getImageData(2, 2, 1, 1).data; tx.fillStyle = `rgb(${px[0]},${px[1]},${px[2]})`; tx.fillRect(0, 0, w, h);
+    const k = h / c.height; tx.drawImage(c, (w - c.width * k) / 2, 0, c.width * k, h); return t; }
   const sr = c.width / c.height, tr = w / h; let sw = c.width, sh = c.height, sx = 0, sy = 0;
   if (sr > tr) { sw = sh * tr; sx = (c.width - sw) / 2; } else { sh = sw / tr; sy = (c.height - sh) / 2; }
   t.getContext('2d').drawImage(c, sx, sy, sw, sh, 0, 0, w, h); return t; };
