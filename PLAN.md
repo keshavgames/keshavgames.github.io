@@ -67,11 +67,11 @@ Status: [x] done, [~] in progress, [ ] todo. (L50) = 50 levels.
 
 ### Racing
 - [x] Sunset Rush  - [x] Neon Drift
-- [ ] Kart Chaos: top-down karts, items, bots, 2P
-- [ ] Moto Stunt: side-view motocross (L50)
-- [ ] Snow Rally: pseudo-3D rally vs AI cars
-- [ ] Drag Strip: shift timing duels
-- [ ] Boat Blitz: top-down speedboats
+- [x] Kart Chaos: Blender karts, items, drift, 30 tracks, 2P split
+- [x] Moto Stunt: Blender bike, flips, checkpoints, 50 tracks
+- [x] Snow Rally: pseudo-3D ice rally, Blender cars, 30 stages
+- [x] Drag Strip: launch and shift timing, nitro, 30 rivals, 2P
+- [x] Boat Blitz: Blender speedboats, buoy gates, ramps, 30 courses, 2P
 
 ### Arcade
 - [x] Star Pinball  - [x] Gem Snake  - [x] Brick Smash -> L50  - [x] Rock Dodge
@@ -111,3 +111,4 @@ Status: [x] done, [~] in progress, [ ] todo. (L50) = 50 levels.
 - 13 Nov 2026: plan written.
 - 13 Nov 2026: core v3 (levels, modes, online rooms), shared raycaster, Blender monster + soldier kit, Hollow Ward rebuilt, Strike Point, Storm Royale. 36 games.
 - 13 Nov 2026: horror set done (Last Shell, Night Shift, Whisper Woods, Crawlspace, Doll House, Dead Signal). tools/harness.js added for headless sims and thumbnails. 42 games.
+- 16 Nov 2026: shooter set (Laser Arena, Tank Clash, Sky Ace, Sniper Ridge) and racing set (Kart Chaos, Moto Stunt, Snow Rally, Drag Strip, Boat Blitz) done. 51 games.
