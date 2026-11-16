@@ -7,8 +7,10 @@ const find = id => GameBox.list.find(g => g.id === id);
 window.frame = (id, n = 1, dt = 1 / 60) => {
   const g = find(id), c = document.getElementById('cv'), x = c.getContext('2d');
   if (c.width !== g.w * 1.5 || c.height !== g.h * 1.5) { c.width = g.w * 1.5; c.height = g.h * 1.5; } // match the game's own shape
+  const ow = G.W, oh = G.H; G.W = g.w; G.H = g.h; // helpers like G.clear use the open game's size
   for (let i = 0; i < n; i++) g.update(dt);
   x.setTransform(c.width / g.w, 0, 0, c.height / g.h, 0, 0); g.draw(x, dt); x.setTransform(1, 0, 0, 1, 0, 0);
+  G.W = ow; G.H = oh;
   return 'ok';
 };
 const put = async (path, canvas) => {

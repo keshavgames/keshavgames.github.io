@@ -60,7 +60,7 @@ Status: [x] done, [~] in progress, [ ] todo. (L50) = 50 levels.
 ### RPG
 - [x] Ember Keep -> 50 floors  - [x] Spellbound -> 50 floors
 - [ ] Dungeon Tactics: turn-based squad grid battles (L50)
-- [ ] Monster Tamer: catch and battle original creatures
+- [x] Monster Tamer: eight original Blender creatures, 30 areas
 - [ ] Loot Crawler: roguelike grid dungeon (50 floors)
 - [ ] Slime Kingdom: auto-battler
 - [ ] Knight Quest: overworld action RPG
@@ -75,17 +75,17 @@ Status: [x] done, [~] in progress, [ ] todo. (L50) = 50 levels.
 
 ### Arcade
 - [x] Star Pinball  - [x] Gem Snake  - [x] Brick Smash -> L50  - [x] Rock Dodge
-- [ ] Road Hopper: cross roads and rivers
-- [ ] Stack Tower: timing stacker
-- [ ] Maze Muncher: maze chase (L50)
+- [x] Road Hopper: Blender karts as traffic, boats to ride, trains, 30 levels
+- [x] Stack Tower: timing stacker, 30 levels
+- [x] Maze Muncher: maze chase, four beetle personalities, 50 mazes
 
 ### Puzzle
 - [x] Crystal Cascade -> L50  - [x] Gem Pairs
-- [ ] Crate Push (L50)  - [ ] Pipe Flow (L50)  - [ ] Laser Mirrors (L50)  - [ ] Color Flood (L50)  - [ ] Word Hunt
+- [x] Crate Push (L50)  - [x] Pipe Flow (L50)  - [x] Laser Mirrors (L50)  - [x] Color Flood (L50)  - [x] Word Hunt (30)
 
 ### Strategy
 - [x] Gem Garrison  - [x] Isle Conquest  - [x] Tank Duel
-- [ ] Checkers vs bot / 2P  - [ ] Sea Battle  - [ ] Lane Wars  - [ ] Castle Builder
+- [x] Checkers vs bot / 2P  - [x] Sea Battle  - [x] Lane Wars  - [x] Drop Four (replaces Castle Builder)
 
 ### Simulation
 - [x] Tiny Acre  - [x] Cafe Rush  - [x] Frostbound  - [x] Orbit Courier
@@ -93,7 +93,7 @@ Status: [x] done, [~] in progress, [ ] todo. (L50) = 50 levels.
 
 ### Sports
 - [x] Turbo Kickoff
-- [ ] Hoop Shot  - [ ] Mini Golf (50 holes)  - [ ] Bowling  - [ ] Air Hockey 2P  - [ ] Home Run Derby  - [ ] Table Tennis 2P
+- [x] Hoop Shot  - [x] Mini Golf (50 holes)  - [x] Bowling  - [x] Air Hockey 2P  - [x] Home Run Derby  - [x] Table Tennis 2P
 
 ### Casual
 - [x] Style Studio  - [x] Gem Mine Tycoon  - [x] Lakeside Lure
@@ -101,14 +101,15 @@ Status: [x] done, [~] in progress, [ ] todo. (L50) = 50 levels.
 
 ### Music
 - [x] Beat Lanes
-- [ ] Tile Tap  - [ ] Drum Pad  - [ ] Echo Lights  - [ ] Beat Maker
+- [x] Tile Tap  - [x] Drum Pad  - [x] Echo Lights  - [x] Beat Maker
 
 ### Skill
 - [x] Word Siege  - [x] Target Rush
-- [ ] Quick Draw 2P  - [ ] Axe Toss (L50)  - [ ] Tightrope  - [ ] Steady Hand (L50)
+- [x] Quick Draw 2P  - [x] Axe Toss (L50)  - [x] Tightrope  - [x] Steady Hand (L50)
 
 ## Progress log
 - 13 Nov 2026: plan written.
 - 13 Nov 2026: core v3 (levels, modes, online rooms), shared raycaster, Blender monster + soldier kit, Hollow Ward rebuilt, Strike Point, Storm Royale. 36 games.
 - 13 Nov 2026: horror set done (Last Shell, Night Shift, Whisper Woods, Crawlspace, Doll House, Dead Signal). tools/harness.js added for headless sims and thumbnails. 42 games.
 - 16 Nov 2026: shooter set (Laser Arena, Tank Clash, Sky Ace, Sniper Ridge) and racing set (Kart Chaos, Moto Stunt, Snow Rally, Drag Strip, Boat Blitz) done. 51 games.
+- 17 Nov 2026: Mini Golf, Monster Tamer, music, skill, sports, puzzle, arcade (+Pogo Jump) and strategy sets done. 79 games. Left: adventure 5, RPG 4, simulation 3+Lemonade Stand, casual 4, action 2+Robo Rumble.
